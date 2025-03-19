@@ -2,8 +2,8 @@
 
 > Transform your images into beautiful Minecraft block art with customizable algorithms and export options
 
-[![Java Version](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![JavaFX](https://img.shields.io/badge/JavaFX-SDK-blue.svg)](https://openjfx.io/)
+[![Java Version](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/downloads/)
+[![JavaFX](https://img.shields.io/badge/JavaFX-21.0.2-blue.svg)](https://openjfx.io/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## ✨ Features
@@ -19,35 +19,44 @@
 
 ## 📋 Prerequisites
 
-- [Java 17+](https://www.oracle.com/java/technologies/downloads/)
-- [JavaFX SDK](https://openjfx.io/)
+- [Java 21+](https://www.oracle.com/java/technologies/downloads/)
+- [Maven](https://maven.apache.org/download.cgi) (for building)
 - **Minecraft Textures** (not included, must be extracted separately for legal reasons)
 
 ## 🛠️ Installation
 
 1. Clone or download this repository
    ```bash
-   git clone https://github.com/your-username/minecraft-pixel-art-creator.git
-   cd minecraft-pixel-art-creator
+   git clone https://github.com/StewyDev65/M.P.A..git
+   cd M.P.A.
    ```
 
 2. Extract Minecraft block textures from your legal copy of Minecraft
     - Navigate to your Minecraft installation
-    - Find the JAR file for your Minecraft version (e.g., `.minecraft/versions/1.20.1/1.20.1.jar`)
+    - Find the JAR file for your Minecraft version (e.g., `.minecraft/versions/1.21.4/1.21.4.jar`)
     - Extract the `assets/minecraft/textures/block` directory
 
-3. Build the application
+3. Build the application with Maven
    ```bash
-   # Using Maven
+   # Clean and package the application with dependencies
    mvn clean package
-   
-   # OR using Gradle
-   gradle build
    ```
 
-4. Run the application
+4. Run the application (two options)
+
+   **Option 1:** Using the Maven JavaFX plugin
    ```bash
-   java --module-path /path/to/javafx-sdk/lib --add-modules javafx.controls,javafx.fxml,javafx.swing -jar target/minecraft-pixel-art-creator.jar
+   mvn javafx:run
+   ```
+
+   **Option 2:** Using the generated JAR file
+   ```bash
+   java -jar target/M.P.A.M.-1.0-SNAPSHOT.jar
+   ```
+
+   Note: If you encounter JavaFX module errors when running the JAR directly, use this command instead:
+   ```bash
+   java --module-path /path/to/javafx-sdk-21.0.2/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -jar target/M.P.A.M.-1.0-SNAPSHOT.jar
    ```
 
 ## 🚀 Using the App
@@ -194,7 +203,12 @@ For best results, start with images between 512x512 and 1024x1024 pixels. The ap
 
 <details>
 <summary><b>Can I use this in survival mode?</b></summary>
-Yes! The Data Pack export option creates functions that can be run in survival mode (though you'll need the blocks in your inventory).
+Not yet. The Data Pack currently uses commands that require creative mode or operator permissions. A survival-friendly version is planned for a future update.
+</details>
+
+<details>
+<summary><b>Why do I get "JavaFX runtime components are missing" error?</b></summary>
+If you're running the JAR directly and see this error, you need to specify the path to JavaFX modules. Use the alternate command that includes `--module-path` and `--add-modules` parameters.
 </details>
 
 ## 📝 License
